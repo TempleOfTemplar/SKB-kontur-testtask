@@ -9,8 +9,8 @@ class AppController {
   }
 
   handleMultiply() {
-    var res = this.matrixService.multiply(this.matrixA, this.matrixB);
-    if(res) {
+    let res = this.matrixService.multiply(this.matrixA, this.matrixB);
+    if (res) {
       this.sidebarStateService.setState('default');
       this.sidebarStateService.setMessage('');
       this.matrixC = res;
@@ -27,7 +27,7 @@ class AppController {
   }
 
   handleSwap() {
-    var t = this.matrixA;
+    let t = this.matrixA;
     this.matrixA = this.matrixB;
     this.matrixB = t;
   }
@@ -53,7 +53,7 @@ class AppController {
   }
 
   recalculateResultMatrix() {
-    var resultMatrixSize = this.matrixService.getResultMatrixSize(this.matrixA, this.matrixB);
+    let resultMatrixSize = this.matrixService.getResultMatrixSize(this.matrixA, this.matrixB);
     return this.matrixService.getDefault(resultMatrixSize.rows, resultMatrixSize.cols);
   }
 

@@ -1,7 +1,6 @@
 class MatrixCellController {
-  constructor( sidebarStateService) {
+  constructor(sidebarStateService) {
     this.sidebarStateService = sidebarStateService;
-    this.onlyNumbersRegExp= /^\d+$/;
     this.editing = this.editing || false;
   }
 

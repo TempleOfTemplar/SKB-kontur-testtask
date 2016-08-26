@@ -1,5 +1,5 @@
-var current_state = 'default',
-  message = '';
+let currentState = 'default';
+let message = '';
 
 export class SidebarStateService {
 
@@ -9,7 +9,7 @@ export class SidebarStateService {
    * @return {string} текущее состояние.
    */
   getState() {
-    return current_state;
+    return currentState;
   }
 
   /**
@@ -26,8 +26,8 @@ export class SidebarStateService {
    *
    * @param {string} new_state Новое состояние.
    */
-  setState(new_state) {
-    current_state = new_state;
+  setState(newState) {
+    currentState = newState;
   }
 
   /**
@@ -39,5 +39,3 @@ export class SidebarStateService {
     message = new_message;
   }
 }
-
-

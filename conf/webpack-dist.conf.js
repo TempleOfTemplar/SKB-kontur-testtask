@@ -9,13 +9,13 @@ const autoprefixer = require('autoprefixer');
 
 module.exports = {
   module: {
-    preLoaders: [
+/*    preLoaders: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'eslint'
       }
-    ],
+    ],*/
 
     loaders: [
       {
@@ -65,7 +65,6 @@ module.exports = {
     filename: '[name]-[hash].js'
   },
   entry: {
-    app: `./${conf.path.src('index')}`,
-    vendor: Object.keys(pkg.dependencies).filter(dep => !['todomvc-app-css'].includes(dep))
+    app: `./${conf.path.src('index')}`
   }
 };

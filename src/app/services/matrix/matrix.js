@@ -6,8 +6,9 @@ export class MatrixService {
    * @param {Array} matrix Исходная матрица.
    */
   addRow(matrix) {
-    if (matrix.length < 10)
+    if (matrix.length < 10) {
       matrix.push(new Array(matrix[0].length));
+    }
   }
 
   /**
@@ -16,10 +17,11 @@ export class MatrixService {
    * @param {Array} matrix Исходная матрица.
    */
   addCol(matrix) {
-    if (matrix[0].length < 10)
-      for (var i = 0, l = matrix.length; i < l; i++) {
+    if (matrix[0].length < 10) {
+      for (let i = 0, l = matrix.length; i < l; i++) {
         matrix[i].push(undefined);
       }
+    }
   }
 
   /**
@@ -28,8 +30,9 @@ export class MatrixService {
    * @param {Array} matrix Исходная матрица.
    */
   delRow(matrix) {
-    if (matrix.length > 2)
+    if (matrix.length > 2) {
       matrix.pop();
+    }
   }
 
   /**
@@ -38,10 +41,11 @@ export class MatrixService {
    * @param {Array} matrix Исходная матрица.
    */
   delCol(matrix) {
-    if (matrix[0].length > 2)
-      for (var i = 0, l = matrix.length; i < l; i++) {
+    if (matrix[0].length > 2) {
+      for (let i = 0, l = matrix.length; i < l; i++) {
         matrix[i].pop();
       }
+    }
   }
 
   /**
@@ -52,15 +56,15 @@ export class MatrixService {
    * @return {Array|undefined} Результат умножения матриы A B.
    */
   multiply(matrixA, matrixB) {
-    if (!this.isMultuplyable(matrixA, matrixB)) return;
-    var a_rows = matrixA.length, a_cols = matrixA[0].length,
-      b_rows = matrixB.length, b_cols = matrixB[0].length,
+    if (!this.isMultuplyable(matrixA, matrixB)) { return }
+    let rowsA = matrixA.length, colsA = matrixA[0].length,
+      colsB = matrixB[0].length,
       result = [];
-    for (var i = 0; i < a_rows; i++) {
+    for (let i = 0; i < rowsA; i++) {
       result[i] = [];
-      for (var j = 0; j < b_cols; j++) {
-        var sum = 0;
-        for (var k = 0; k < a_cols; k++) {
+      for (let j = 0; j < colsB; j++) {
+        let sum = 0;
+        for (let k = 0; k < colsA; k++) {
           sum += matrixA[i][k] * matrixB[k][j];
         }
         result[i][j] = sum;
@@ -77,7 +81,7 @@ export class MatrixService {
    * @return {Boolean} Возможно ли перемножение матриц.
    */
   isMultuplyable(matrixA, matrixB) {
-    return (matrixA[0].length == matrixB.length);
+    return (matrixA[0].length === matrixB.length);
   }
 
   /**
@@ -97,9 +101,9 @@ export class MatrixService {
    * @param {Array} matrix Исходная матрица.
    */
   clear(matrix) {
-    var rows = matrix.length, cols = matrix[0].length;
+    let rows = matrix.length, cols = matrix[0].length;
     matrix.length = 0;
-    for (var i = 0, l = rows; i < l; i++) {
+    for (let i = 0, l = rows; i < l; i++) {
       matrix[i] = new Array(cols);
     }
   }
@@ -112,8 +116,8 @@ export class MatrixService {
    * @return {Array} пустая матрица размерности rows * cols.
    */
   getDefault(rows, cols) {
-    var t = new Array(rows);
-    for (var i = 0; i < rows; i++) {
+    let t = new Array(rows);
+    for (let i = 0; i < rows; i++) {
       t[i] = new Array(cols);
     }
     return t;
