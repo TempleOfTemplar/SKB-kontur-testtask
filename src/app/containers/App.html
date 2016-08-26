@@ -1,0 +1,19 @@
+<control-sidebar-component on-multiply="$ctrl.handleMultiply()"
+                           on-clear="$ctrl.handleClear()"
+                           on-swap="$ctrl.handleSwap()"
+                           on-add-row="$ctrl.handleAddRow(matrix)"
+                           on-del-row="$ctrl.handleDelRow(matrix)"
+                           on-add-col="$ctrl.handleAddCol(matrix)"
+                           on-del-col="$ctrl.handleDelCol(matrix)"
+
+></control-sidebar-component>
+<section class="main">
+  <matrix-table-component class="matrix-table" matrix="$ctrl.matrixC" litera="'c'">
+  </matrix-table-component>
+
+  <matrix-table-component class="matrix-table first-matrix" matrix="$ctrl.matrixA" litera="'a'">
+  </matrix-table-component>
+
+  <matrix-table-component class="matrix-table second-matrix" matrix="$ctrl.matrixB" litera="'b'">
+  </matrix-table-component>
+</section>

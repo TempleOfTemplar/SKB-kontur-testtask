@@ -1,0 +1,11 @@
+<div class="component">
+  <table>
+    <tbody>
+    <tr ng-repeat="(key, value) in $ctrl.matrix">
+      <td ng-repeat="cell in value track by $index">
+        <matrix-cell-component text="value[$index]" litera="$ctrl.litera | lowercase" row-index="key+1" col-index="$index+1"></matrix-cell-component>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

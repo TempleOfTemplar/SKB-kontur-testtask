@@ -1,0 +1,13 @@
+<div class="matrix-cell" ng-class="$ctrl.editing ? 'editing' : ''">
+  <input
+    class="textInput"
+    ng-class="{'edit': $ctrl.editing}"
+    ng-model="$ctrl.text"
+    ng-keypress="$ctrl.handleSubmit($event)"
+    ng-blur="$ctrl.handleBlur()"
+    ng-focus="$ctrl.handleFocus()"
+    ng-pattern="$ctrl.onlyNumbersRegExp"
+    placeholder="{{$ctrl.litera+$ctrl.rowIndex+','+$ctrl.colIndex}}"
+    type="text"
+  />
+</div>

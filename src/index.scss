@@ -1,0 +1,394 @@
+/*todo прозрачные границы!*/
+
+/* mixins and varables */
+@mixin linear-gradient($fromColor, $toColor) {
+  background-color: $toColor; /* Fallback Color */
+  background-image: -webkit-gradient(linear, left top, left bottom, from($fromColor), to($toColor)); /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient($fromColor, $toColor); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image: -moz-linear-gradient($fromColor, $toColor); /* FF3.6 */
+  background-image: -ms-linear-gradient($fromColor, $toColor); /* IE10 */
+  background-image: -o-linear-gradient($fromColor, $toColor); /* Opera 11.10+ */
+  background-image: linear-gradient($fromColor, $toColor);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, StartColorStr='$fromColor', EndColorStr='$toColor');
+}
+
+@mixin angle-linear-gradient($angle, $fromColor, $toColor) {
+  background-color: $toColor; /* Fallback Color */
+  background-image: -webkit-gradient(linear, $angle, from($fromColor), to($toColor)); /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient($angle, $fromColor, $toColor); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image: -moz-linear-gradient($angle, $fromColor, $toColor); /* FF3.6 */
+  background-image: -ms-linear-gradient($angle, $fromColor, $toColor); /* IE10 */
+  background-image: -o-linear-gradient($angle, $fromColor, $toColor); /* Opera 11.10+ */
+  background-image: linear-gradient($angle, $fromColor, $toColor);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=$angle, StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+}
+
+@mixin btnHoverBg() {
+  @include linear-gradient(#f2f2f2, #dfdfdf);
+}
+
+@mixin PrimaryBtnHoverBg() {
+  @include linear-gradient(#3b8d13, #317e0b);
+}
+
+$blue-border-color: #5199db;
+$gray-border-color: #d9d9d9;
+
+$primary-btn-gradient-from: #4ba91d;
+$primary-btn-gradient-to: #38920c;
+
+$control-sidebar-default-color: #bcbcbc;
+$control-sidebar-editing-color: #5199db;
+$control-sidebar-error-color: #f6c1c0;
+
+/* Common styles */
+@font-face {
+  font-family: 'kontur-iconic-eco'; /* Имя шрифта */
+  src: url(/fonts/kontur-iconic-eco.ttf); /* Путь к файлу со шрифтом */
+}
+
+html, body, .MatrixMultiplyApp {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font: 14px "Segoe UI";
+  color: #404040;
+  line-height: 20px;
+}
+
+/* App level styles */
+.first-matrix {
+  position: relative;
+}
+
+.first-matrix:after {
+  content: "A";
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 100%;
+  padding-left: 20px;
+  font-size: 2em;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.second-matrix:after {
+  content: "B";
+  position: absolute;
+  display: block;
+  top: 100%;
+  left: 50%;
+  padding-top: 20px;
+  font-size: 2em;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.main {
+  width: auto;
+  height: 100%;
+  background-color: #FFF;
+  float: left;
+}
+
+/* ControlSidebar component styles */
+.controls-block {
+  display: block;
+  float: left;
+  clear: left;
+  margin-bottom: 40px;
+  .btn {
+    margin: 5px 0;
+  }
+  &.matrix-select {
+    >div {
+      float: left;
+      margin-left: 10px;
+      padding: 0;
+      &:first-child {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.control-buttons-wrap {
+  padding: 20px 10px 20px 20px;
+}
+
+.control-sidebar {
+  width: 300px;
+  height: 100%;
+  background-color: lightgray;
+  font-size: 1em;
+  float: left;
+
+  &.default {
+    background-color: $control-sidebar-default-color;
+  }
+
+  &.editing {
+    background-color: $control-sidebar-editing-color;
+  }
+
+  &.error {
+    background-color: $control-sidebar-error-color;
+    .message {
+      color: #F00;
+    }
+  }
+}
+
+/* MatrixTable component styles */
+.matrix-table {
+  height: auto;
+  position: relative;
+  display: block;
+  float: left;
+  padding: 0.4em;
+  margin: 1em;
+}
+
+.matrix-table:last-child {
+  display: block;
+  float: left;
+  clear: left;
+}
+
+.matrix-table > .component:after,
+.matrix-table > .component:before {
+  border: .2em solid black;
+  pointer-events: none;
+  bottom: 0;
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 10%;
+}
+
+.matrix-table > .component:after {
+  border-left: none;
+  right: 0;
+}
+
+.matrix-table > .component:before {
+  border-right: none;
+  left: 0;
+}
+
+/* MatrixCell component styles*/
+.matrix-cell {
+  background-color: white;
+  border: 1px solid $gray-border-color;
+  &.editing {
+    border: 1px solid $blue-border-color;
+  }
+
+  input {
+    text-align: center;
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* Buttons */
+.btn {
+  border: solid 1px #d9d9d9;
+  background-color: #eeeeee;
+  border-bottom: solid 1px #b2b2b2;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  font-size: 1em;
+  padding: 5px 10px;
+  border-radius: 3px;
+  &:hover {
+    @include btnHoverBg;
+  }
+  &:focus {
+    outline: none;
+    border: 1px solid $blue-border-color;
+  }
+  &:disabled {
+    border: 1px solid $gray-border-color;
+  }
+  &:active {
+    outline: none;
+    background: #a6a6a6;
+    background: -moz-linear-gradient(top, #a6a6a6 0%, #d0d0d0 10%, #d0d0d0 11%, #d9d9d9 100%);
+    background: -webkit-linear-gradient(top, #a6a6a6 0%, #d0d0d0 10%, #d0d0d0 11%, #d9d9d9 100%);
+    background: linear-gradient(to bottom, #a6a6a6 0%, #d0d0d0 10%, #d0d0d0 11%, #d9d9d9 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a6a6a6', endColorstr='#d9d9d9', GradientType=0);
+  }
+  &.btn-primary {
+    position: relative;
+    padding: 8px 10px;
+    line-height: 16px;
+    border: solid 1px #37662b;
+    @include linear-gradient($primary-btn-gradient-from, $primary-btn-gradient-to);
+    color: #FFF;
+    &:hover {
+      @include PrimaryBtnHoverBg;
+    }
+    &:focus {
+      outline: none;
+      border: 1px solid $blue-border-color;
+    }
+    &:disabled {
+      border: 1px solid $gray-border-color;
+    }
+    &:active {
+      border: 1px solid #51744c;
+      border-top: 1px solid #3d5333;
+      outline: none;
+      background: #29660b;
+      background: -moz-linear-gradient(top, #29660b 0%, #35840e 5%, #35840e 5%, #35840e 100%);
+      background: -webkit-linear-gradient(top, #29660b 0%, #35840e 5%, #35840e 5%, #35840e 100%);
+      background: linear-gradient(to bottom, #29660b 0%, #35840e 5%, #35840e 5%, #35840e 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#29660b', endColorstr='#35840e', GradientType=0);
+    }
+  }
+
+  /* "Такую личную неприязнь я испытываю к этой стрелочке, даже кушать не могу!" (c).
+      Упорно не хочу делать это картинкой. Попробовал 3 разных варианта через border-ы,
+      все не позволяют сделать border вокруг псевдо-элемента, так как во-первых собственно
+      этим border-ом и сделана стрелочка (ну, понятное дело!), а во-вторых такой стрелочке не задашь градиент.
+      Поглядел как сделано на https://kontur.ru/elba (кнопка подобрнее, класс ".btn-arrow-right"), понравилось, выглядит красиво, но те-же проблемы.
+      В итоге длительных скитаний по пустоши нашел вот такой вариант:
+      http://stackoverflow.com/questions/12431596/css-gradient-for-triangle-shaped-arrow
+      Магия, не иначе, но идея прикольная. В итоге все равно торчащие пиксели если приблизить...(
+      Думается мне, что такие вещи всё-таки делаются или через картинку по старинке, или через SVG по человечески.
+   */
+  &.btn-arrow-right {
+    position: relative;
+    border: solid 1px #37662b;
+    padding: 11px 20px 11px 15px;
+    border-right: none;
+    border-radius: 0;
+    -webkit-border-top-left-radius: 2px;
+    -webkit-border-bottom-left-radius: 2px;
+    -moz-border-radius-topleft: 2px;
+    -moz-border-radius-bottomleft: 2px;
+    cursor: pointer;
+  }
+  &.btn-arrow-right:after {
+    position: absolute;
+    top: 7px;
+    right: -12px;
+    width: 23px;
+    height: 23px;
+    border-left: solid 1px #37662b;
+    border-top: solid 1px #37662b;
+    transform: rotate(134deg) skewX(-10deg) skewY(-10deg);
+    background: linear-gradient(45deg, $primary-btn-gradient-from, $primary-btn-gradient-to);
+    content: '';
+  }
+  &:focus::after {
+    border: none;
+    border-left: solid 1px $blue-border-color;
+    border-top: solid 1px $blue-border-color;
+  }
+  &:hover::after {
+    background: linear-gradient(45deg, #3b8d13, #317e0b);
+  }
+  &:active::after {
+    border-left: 1px solid #51744c;
+    border-top: 1px solid #3d5333;
+    background: linear-gradient(45deg, #29660b 0%, #35840e 5%, #35840e 5%, #35840e 100%);
+  }
+}
+
+/* Inputs */
+.radio {
+  vertical-align: top;
+  width: 14px;
+  height: 14px;
+  + label {
+    cursor: pointer;
+  }
+  &:not(checked) {
+    position: absolute;
+    opacity: 0;
+    + label {
+      position: relative;
+      padding: 0 5px 0 20px;
+    }
+    + label:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 16px;
+      height: 16px;
+      border: 1px solid #858585;
+      border-radius: 50%;
+      background: #FFF;
+    }
+    + label:after {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #404040;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, .5);
+      opacity: 0;
+      transition: all .2s;
+    }
+  }
+  &:checked {
+    + label:after {
+      opacity: 1;
+    }
+  }
+  &:hover {
+    + label:before {
+      @include linear-gradient(#f0f0f0, #dfdfdf);
+    }
+  }
+  &:focus {
+    + label:before {
+      border: solid 1px $blue-border-color;
+    }
+  }
+}
+
+/* Icons */
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: 'kontur-iconic-eco';
+  font-style: normal;
+  speak: none;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.icon-clear:before {
+  content: "\E012";
+}
+
+.icon-swap:before {
+  content: "\E01F";
+}
+
+.icon-plus:before {
+  content: "\E00D";
+}
+
+.icon-minus:before {
+  content: "\E01E";
+}
+
+/* Utility styles */
+.pull-left {
+  float: left;
+}
