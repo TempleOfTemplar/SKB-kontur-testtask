@@ -3,9 +3,9 @@ class AppController {
   constructor(matrixService, sidebarStateService) {
     this.sidebarStateService = sidebarStateService;
     this.matrixService = matrixService;
-    this.matrixA = matrixService.getDefault(3, 3);
-    this.matrixB = matrixService.getDefault(3, 3);
-    this.matrixC = matrixService.getDefault(3, 3);
+    this.matrixA = matrixService.getDefault(4, 2);
+    this.matrixB = matrixService.getDefault(2, 3);
+    this.matrixC = this.recalculateResultMatrix();
   }
 
   handleMultiply() {

@@ -1,13 +1,13 @@
 <div class="component control-sidebar" ng-class="$ctrl.getState()">
 
   <div class="control-buttons-wrap">
-    <div class="controls-block">
+    <div class="controls-block-1">
       <button class="btn btn-primary btn-arrow-right block multiply-btn" ng-click="$ctrl.onMultiply()">
         Умножить матрицы
       </button>
     </div>
 
-    <div class="controls-block">
+    <div class="controls-block-2">
       <button class="btn block clear-btn" ng-click="$ctrl.onClear()">
         <i class="icon-clear"></i>
         Очистить матрицы
@@ -18,31 +18,35 @@
       </button>
     </div>
 
-    <div class="controls-block matrix-select">
-      <div class="pull-left">
-        <input id="choice-a" class="radio" name="selectedMatrixA" type="radio"
-               ng-model="$ctrl.selectedMatrix" value="matrixA">
-        <label class="radio-custom-label" for='choice-a'>
-          Матрица А
-        </label>
+    <div class="controls-block-3">
+      <div class="matrix-select">
+        <div class="pull-left">
+          <input id="choice-a" class="radio" name="selectedMatrixA" type="radio"
+                 ng-model="$ctrl.selectedMatrix" value="matrixA">
+          <label class="radio-custom-label" for='choice-a'>
+            Матрица А
+          </label>
+        </div>
+        <div class="pull-left">
+          <input id="choice-b" class="radio" name="selectedMatrixB" type="radio"
+                 ng-model="$ctrl.selectedMatrix" value="matrixB">
+          <label class="radio-custom-label" for='choice-b'>
+            Матрица B
+          </label>
+        </div>
       </div>
-      <div class="pull-left">
-        <input id="choice-b" class="radio" name="selectedMatrixB" type="radio"
-               ng-model="$ctrl.selectedMatrix" value="matrixB">
-        <label class="radio-custom-label" for='choice-b'>
-          Матрица B
-        </label>
+      <div class="matrix-edit-buttons">
+        <div>
+          <button class="btn" ng-click="$ctrl.handleAddRow()"><i class="icon-plus"></i> Добавить</button>
+          <button class="btn" ng-click="$ctrl.handleDelRow()"><i class="icon-minus"></i> Удалить</button>
+          <span> строку</span>
+        </div>
+        <div>
+          <button class="btn inline" ng-click="$ctrl.handleAddCol()"><i class="icon-plus"></i> Добавить</button>
+          <button class="btn inline" ng-click="$ctrl.handleDelCol()"><i class="icon-minus"></i> Удалить</button>
+          <span> столбец</span>
+        </div>
       </div>
-      <p>
-        <button class="btn" ng-click="$ctrl.handleAddRow()"><i class="icon-plus"></i> Добавить</button>
-        <button class="btn" ng-click="$ctrl.handleDelRow()"><i class="icon-minus"></i> Удалить</button>
-        <span> строку</span>
-      </p>
-      <p>
-        <button class="btn inline" ng-click="$ctrl.handleAddCol()"><i class="icon-plus"></i> Добавить</button>
-        <button class="btn inline" ng-click="$ctrl.handleDelCol()"><i class="icon-minus"></i> Удалить</button>
-        <span> столбец</span>
-      </p>
     </div>
 
     <div class="controls-block message" ng-if="$ctrl.getMessage()">

@@ -92,7 +92,7 @@ export class MatrixService {
    * @return {Object} {cols: количество колонок, rows: количество строк}.
    */
   getResultMatrixSize(matrixA, matrixB) {
-    return {cols: matrixA[0].length, rows: matrixB.length};
+    return {cols: matrixB[0].length, rows:  matrixA.length};
   }
 
   /**
