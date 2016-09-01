@@ -107,6 +107,17 @@ html, body, .MatrixMultiplyApp {
 }
 
 /* ControlSidebar component styles */
+.controls-block {
+  display: block;
+  float: left;
+  clear: left;
+  &.message {
+    padding-right: 20px;
+    font-size: 14px;
+    white-space: pre-wrap;
+    font-weight: 500;
+  }
+}
 .controls-block-1 {
   display: block;
   float: left;
